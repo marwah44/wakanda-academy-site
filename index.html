@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wakanda Academy Sports - Swimming Excellence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+/>
+
+    <style>
+        /* ==== ANIMATIONS ON SCROLL ==== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional variety */
+.fade-right {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: all 0.8s ease;
+}
+
+.fade-right.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-left {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.8s ease;
+}
+
+.fade-left.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #DC143C;
+            --primary-blue: #1a2c4e;
+            --accent-cyan: #00CED1;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        nav {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0d1929 100%);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            background-color: white;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(220, 20, 60, 0.4);
+        }
+
+        .logo img {
+            height: 60px;
+            width: 60px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: var(--primary-red);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-red) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 5%;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,300 Q300,100 600,300 T1200,300 L1200,600 L0,600 Z" fill="rgba(0,206,209,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .hero-content {
+            color: var(--white);
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.2s ease;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .hero-btn {
+            padding: 1rem 2.5rem;
+            background: var(--primary-red);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .hero-btn:hover {
+            background: var(--accent-cyan);
+            transform: scale(1.05);
+        }
+
+        .hero-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            z-index: 2;
+        }
+
+        .hero-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeInRight 1.2s ease;
+        }
+
+        .hero-image:first-child {
+            margin-top: 3rem;
+        }
+
+        .hero-image:last-child {
+            margin-bottom: 3rem;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .gallery-section {
+            padding: 5rem 5%;
+            background: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary-red);
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(220, 20, 60, 0.8);
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: var(--primary-red);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev {
+            left: 20px;
+        }
+
+        .carousel-btn.next {
+            right: 20px;
+        }
+
+        .branches-section {
+            padding: 5rem 5%;
+            background: var(--white);
+        }
+
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .branch-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .branch-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(220, 20, 60, 0.3);
+        }
+
+        .branch-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .branch-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .branch-card:hover .branch-image img {
+            transform: scale(1.1);
+        }
+
+        .branch-content {
+            padding: 1.5rem;
+        }
+
+        .branch-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .branch-details-btn {
+            background: var(--primary-red);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .branch-details-btn:hover {
+            background: var(--accent-cyan);
+            transform: scale(1.05);
+        }
+
+        .branch-details {
+            display: none;
+            padding: 8rem 5% 5rem;
+            background: var(--light-gray);
+            min-height: 100vh;
+        }
+
+        .branch-details.active {
+            display: block;
+        }
+
+        .details-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .details-image {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .details-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .details-content {
+            padding: 3rem;
+        }
+
+        .details-content h2 {
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            border-left: 4px solid var(--primary-red);
+            padding-left: 1.5rem;
+        }
+
+        .info-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+
+        .book-now-btn {
+            background: var(--primary-red);
+            color: var(--white);
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 1rem;
+        }
+
+        .book-now-btn:hover {
+            background: var(--accent-cyan);
+            transform: scale(1.05);
+        }
+
+        .back-btn {
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--accent-cyan);
+        }
+
+        .about-section {
+            padding: 5rem 5%;
+            background: var(--light-gray);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: var(--primary-blue);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .about-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+        .about-img {
+    width: 100%;
+    height: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+     opacity: 0;
+  animation: fadeUp 1s ease forwards;
+}
+.about-img:nth-child(1) { animation-delay: 0.2s; }
+.about-img:nth-child(2) { animation-delay: 0.4s; }
+.about-img:nth-child(3) { animation-delay: 0.6s; }
+.about-img:nth-child(4) { animation-delay: 0.8s; }
+
+.about-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.about-img:hover img {
+    transform: scale(1.05);
+}
+
+
+        .contact-section {
+            padding: 4rem 5%;
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-btn {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            background: var(--accent-cyan);
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        .main-content {
+            display: block;
+        }
+
+        .main-content.hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: -100%;
+                flex-direction: column;
+                background: var(--primary-blue);
+                width: 100%;
+                padding: 2rem;
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-images {
+                order: -1;
+            }
+
+            .hero-image img {
+                height: 250px;
+            }
+
+         
+ .about-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-text h2 {
+    font-size: 2rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+  }
+
+  .about-images {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .about-img {
+    height: 200px;
+  }
+            .carousel-item {
+                height: 300px;
+            }
+              .details-content {
+    padding: 1.5rem;
+  }
+
+  .book-now-btn,
+  .back-btn {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .book-now-btn {
+    margin-bottom: 1rem;
+  }
+
+  .info-grid {
+    gap: 1rem;
+  }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="logo.png" alt="Wakanda Academy Logo">
+                </div>
+                <div class="logo-text">WAKANDA </div>
+            </div>
+            <ul class="nav-links">
+                <li><<a href="#home" onclick="goBack()">Home</a></li>
+                <li><a href="#branches" onclick="goBack()">Branches</a></li>
+                <li><a href="#about" onclick="goBack()">About Us</a></li>
+                <li><a href="#contact" onclick="goBack()">Contact Us</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content" id="mainContent">
+        <section class="hero" id="home">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Come Join Our Swimming Class</h1>
+                    <p>At Wakanda Academy Sports, we believe in nurturing champions both in and out of the water. Excellence in Swimming Training for all ages and skill levels.</p>
+                    <button class="hero-btn" onclick="document.getElementById('branches').scrollIntoView({behavior: 'smooth'})">Learn more →</button>
+                </div>
+                <div class="hero-images">
+                    <div class="hero-image">
+                        <img src="images/hero1.jpg" alt="Swimming Training">
+                    </div>
+                    <div class="hero-image">
+                        <img src="images/hero2.jpg" alt="Professional Coaching">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section fade-in">
+
+            <h2 class="section-title fade-right">Our Academy Gallery</h2>
+            <div class="carousel">
+                <div class="carousel-container" id="carouselContainer">
+                    <div class="carousel-item"><img src="images/image1.jpg" alt="Photo 1"></div>
+                    <div class="carousel-item"><img src="images/image2.jpg" alt="Photo 2"></div>
+                    <div class="carousel-item"><img src="images/image3.jpg" alt="Photo 3"></div>
+                    <div class="carousel-item"><img src="images/image4.jpg" alt="Photo 4"></div>
+                    <div class="carousel-item"><img src="images/image5.jpg" alt="Photo 5"></div>
+                    <div class="carousel-item"><img src="images/image6.jpg" alt="Photo 6"></div>
+                    <div class="carousel-item"><img src="images/image7.jpg" alt="Photo 7"></div>
+                    <div class="carousel-item"><img src="images/image8.jpg" alt="Photo 8"></div>
+                    <div class="carousel-item"><img src="images/image9.jpg" alt="Photo 9"></div>
+                    <div class="carousel-item"><img src="images/image10.jpg" alt="Photo 10"></div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+            </div>
+        </section>
+
+        <section class="branches-section fade-right" id="branches">
+            <h2 class="section-title fade-in">Our Branches</h2>
+            <div class="branches-grid fade-in" id="branchesGrid"></div>
+        </section>
+
+        <section class="about-section fade-right"" id="about">
+            <h2 class="section-title fade-in">About Us</h2>
+            <div class="about-container">
+                <div class="about-text">
+                    <h2>Wakanda Academy Sports</h2>
+                    <p>At Wakanda Academy Sports, we believe in nurturing champions both in and out of the water. Our state-of-the-art facilities and expert coaching staff are dedicated to providing the highest quality swimming instruction for all ages and skill levels.</p>
+                    <p>With multiple branches across the region, we make excellence accessible. Our programs focus on technique, safety, and building confidence while fostering a love for swimming that lasts a lifetime.</p>
+                    <p>Join our community of swimmers and experience the Wakanda difference – where tradition meets innovation in aquatic excellence.</p>
+                </div>
+          <div class="about-images">
+    <div class="about-img">
+        <img src="images/about1.jpg" alt="Swimming Class">
+    </div>
+    <div class="about-img">
+        <img src="images/about2.jpg" alt="Coaching Team">
+    </div>
+    <div class="about-img">
+        <img src="images/about3.jpg" alt="Training Pool">
+    </div>
+    <div class="about-img">
+        <img src="images/about4.jpg" alt="Swimmers Group">
+    </div>
+</div>
+
+            </div>
+        </section>
+
+       <section class="contact-section fade-right" id="contact">
+  <div class="contact-container fade-in">
+    <h2>Contact Us</h2>
+    <p>Follow us on social media and stay connected with Wakanda Academy Sports</p>
+
+    <div class="social-links">
+      <a href="https://www.facebook.com/share/1Bn7qqkF94/" target="_blank" class="social-btn">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com/wakanda.academyy?igsh=MTJteHB1a3RrOWpjbg==" target="_blank" class="social-btn">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://wa.me/1234567890" target="_blank" class="social-btn">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <p style="margin-top: 2rem;">&copy; 2024 Wakanda Academy Sports. All Rights Reserved.</p>
+  </div>
+</section>
+
+    </div>
+
+    <div id="branchDetailsContainer"></div>
+
+    <script>
+const branches = [
+  {
+    id: 1,
+    name: "Royal mall Branch",
+    image: "images/branch1.jpg",
+    address: "El Montazah, next to Carrefour, after Karam El Sham",
+    schedule: "Sunday and Wednesday: 6:00 PM - 7:00 PM\nSunday 7:00 PM - 8:00 PM ,Wednesday 8:00 PM - 9:00 PM\nWednesday 5:00 AM - 6:00 PM ",
+    prices: {
+      monthly: "430 EGP",
+      singleSession: "60 EGP",
+      private: {
+        fourSessions: "500 EGP",
+        eightSessions: "950 EGP"
+      },
+      siblingsOffer: "2 siblings = 800 EGP"
+    },
+    whatsapp: "https://wa.me/1234567890"
+  },
+  {
+    id: 2,
+    name: "Alex City Branch",
+    image: "images/branch2.jpg",
+    address: "El Seyouf, in front of Fathallah, the street that starts with Abu Amoud.",
+    schedule: "Friday and Monday: 6:00 PM - 7:00 PM",
+    prices: {
+      monthly: "475 EGP",
+      single: "70 EGP",
+      private: {
+        fourSessions: "450 EGP",
+        eightSessions: "850 EGP"
+      },
+      siblingsOffer: "2 siblings = 900 EGP"
+    },
+    whatsapp: "https://wa.me/+201221393940"
+  },
+  {
+    id: 3,
+    name: "Arena Branch",
+    image: "images/branch3.jpg",
+    address: "Kobri Abis, behind El Horreya School, in front of El Elysée Wedding Hall.",
+    schedule: "Monday and Thursday: 4:00 PM - 5:00 PM\nMonday and Thursday: 5:00 PM - 6:00 PM\nMonday and Thursday: 6:00 PM - 7:00 PM",
+    prices: {
+      monthly: "360 EGP",
+      single: "60 EGP",
+      private: {
+         fourSessions: "450 EGP",
+        eightSessions: "850 EGP"
+      },
+      siblingsOffer: "2 siblings = 660 EGP"
+    },
+    whatsapp: "https://wa.me/+201221393940"
+  },
+  {
+    id: 4,
+    name: "Elnahas Branch",
+    image: "images/branch4.jpg",
+    address: "Fleming, behind the Faculty of Physical Education for Girls, Abdel Fattah El Taweel Street.",
+    schedule: "Saturday and Tusesday: 5:00 AM - 6:00 PM",
+    prices: {
+      monthly: "400 EGP",
+      single: "60 EGP",
+      private: {
+        fourSessions: "450 EGP",
+        eightSessions: "850 EGP"
+      },
+      siblingsOffer: "2 siblings = 760 EGP"
+    },
+    whatsapp: "https://wa.me/+201221393940"
+  },
+  {
+    id: 5,
+    name: "El tatbiyeen Branch",
+    image: "images/branch5.jpg",
+    address: "Saba basha, on the Corniche, next to the El Mohndseen Club.",
+    schedule: "Sunday and Wednesday: 5:00 PM - 6:00 PM\nFriday 6:00 AM - 8:00 PM",
+    prices: {
+      monthly: "400 EGP",
+      single: "60 EGP",
+      private: {
+         fourSessions: "450 EGP",
+        eightSessions: "850 EGP"
+      },
+      siblingsOffer: "2 siblings = 760 EGP"
+    },
+    whatsapp: "https://wa.me/+201221393940"
+  },
+  {
+    id: 6,
+    name: "Future Branch",
+    image: "images/branch6.jpg",
+    address: "El Mandara, in front of the Faculty of Islamic Studies, Benzina Total Street.",
+    schedule: "Saturday to Tuesday: 7:00 PM - 8:00 PM",
+    prices: {
+      monthly: "450 EGP",
+      single: "60 EGP",
+      private: {
+        fourSessions: "500 EGP",
+        eightSessions: "950 EGP"
+      },
+      siblingsOffer: "2 siblings = 860 EGP"
+    },
+    whatsapp: "https://wa.me/+201221393940"
+  },
+  {
+    id: 7,
+    name: "U Club Branch",
+    image: "images/branch7.jpg",
+    address: "Moharram Bek, Boulino, on El Mahmoudia, next to Royal Mall Wedding Hall.",
+    schedule: "Sunday and Wednesday: 8:00 PM - 9:00 PM",
+    prices: {
+      monthly: "450 EGP",
+      single: "60 EGP",
+      siblingsOffer: "2 siblings = 860 EGP",
+      private: {
+        fourSessions: "450 EGP",
+        eightSessions: "850 EGP"
+      },
+      
+    },
+    whatsapp: "https://wa.me/+201221393940"
+  }
+];
+
+
+
+
+    function renderBranches() {
+        const grid = document.getElementById('branchesGrid');
+        branches.forEach(b => {
+            const card = document.createElement('div');
+            card.className = 'branch-card';
+            card.innerHTML = `
+                <div class="branch-image"><img src="${b.image}" alt="${b.name}"></div>
+                <div class="branch-content">
+                    <h3>${b.name}</h3>
+                    <p>${b.address}</p>
+                    <button class="branch-details-btn" onclick="showBranchDetails(${b.id})">See Details</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function showBranchDetails(id) {
+        const b = branches.find(br => br.id === id);
+        document.getElementById('mainContent').classList.add('hidden');
+
+        // عرض الأسعار بشكل منسق
+        const priceHTML = `
+            <ul class="price-list">
+                <li><strong>Monthly:</strong> ${b.prices.monthly}</li>
+                <li><strong>Siblings Offer:</strong> ${b.prices.siblingsOffer}</li>
+                <li><strong>Single Session:</strong> ${b.prices.single}</li>
+                <li><strong>Private (4 Sessions):</strong> ${b.prices.private.fourSessions}</li>
+                <li><strong>Private (8 Sessions):</strong> ${b.prices.private.eightSessions}</li>
+                
+            </ul>
+        `;
+
+        document.getElementById('branchDetailsContainer').innerHTML = `
+            <div class="branch-details active">
+                <div class="details-container">
+                    <div class="details-image"><img src="${b.image}" alt="${b.name}"></div>
+                    <div class="details-content">
+                        <h2>${b.name}</h2>
+                        <div class="info-grid">
+                            <div class="info-item"><h4>Address</h4><p>${b.address}</p></div>
+                            <div class="info-item"><h4>Schedule</h4><p>${b.schedule.replace(/\n/g, '<br>')}</p></div>
+                            <div class="info-item"><h4>Prices</h4>${priceHTML}</div>
+                        </div>
+                        <button class="book-now-btn" onclick="window.open('${b.whatsapp}', '_blank')">Book Now</button>
+                        <button class="back-btn" onclick="goBack()">Back to Branches</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        window.scrollTo(0, 0);
+    }
+
+        function goBack() {
+            document.getElementById('mainContent').classList.remove('hidden');
+            document.getElementById('branchDetailsContainer').innerHTML = '';
+            document.getElementById('branches').scrollIntoView({behavior: 'smooth'});
+        }
+
+        let currentSlide = 0;
+        const totalSlides = 10;
+
+        function moveCarousel(dir) {
+            currentSlide += dir;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            document.getElementById('carouselContainer').style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        setInterval(() => moveCarousel(1), 5000);
+
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        renderBranches();
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+
+  const fadeElements = document.querySelectorAll('.fade-in, .fade-right, .fade-left');
+
+  function handleScrollAnimation() {
+    fadeElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        el.classList.add('show');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', handleScrollAnimation);
+  window.addEventListener('load', handleScrollAnimation);
+ 
+const images = document.querySelectorAll('.about-img');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+images.forEach(img => {
+  img.style.animationPlayState = 'paused';
+  observer.observe(img);
+});
+
+
+
+    </script>
+</body>
+</html>
